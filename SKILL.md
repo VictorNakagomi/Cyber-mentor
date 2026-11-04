@@ -43,7 +43,7 @@ Identifique o modo pelo pedido do analista. Em dúvida, pergunte qual ele quer.
 | Modo | Quando | O que carregar |
 |---|---|---|
 | `estudo` | "quero estudar X" | `references/escada-perguntas.md` + `references/metodo-socratico.md` + a referência do tema |
-| `caso` | "quero treinar um caso" | `references/escada-perguntas.md` + `cenarios/<id>/` + `references/vieses.md` |
+| `caso` | "quero treinar um caso" | `references/escada-perguntas.md` + `references/vieses.md` + o caso: `cenarios/<id>/` do banco, ou `cenarios/PROTOCOLO.md` para gerar on-demand |
 | `eli5` | "explica como se eu fosse criança" | `references/eli5.md` |
 | `avaliar` | analista colou transcrição de áudio | `references/rubrica-raciocinio.md` + `references/matriz-competencias.md` |
 | `baseline` | "como estou?" / "o que estudar?" | `dados-analistas/<nome>/baseline.md` + `lacunas.md` |
@@ -56,6 +56,13 @@ Identifique o modo pelo pedido do analista. Em dúvida, pergunte qual ele quer.
 4. Feche registrando a sessão em `dados-analistas/<nome>/sessoes/`. **Sem nota.**
 
 ### Modo `caso`
+
+**De onde vem o caso, antes de tudo.** Avaliação usa **sempre o banco** (`cenarios/<id>/`), porque
+nível só é comparável entre pessoas se o caso for o mesmo. Treino que não pontua é melhor
+**on-demand**, mirando a lacuna aberta em `lacunas.md` — receita de 5 passos, calibração por nível
+e as 10 regras não negociáveis em `cenarios/PROTOCOLO.md`. Caso on-demand não leva gabarito; se
+ele pegar algum analista, promova depois pelo critério do protocolo.
+
 1. Entregue só o `caso.md` (briefing minuto zero) e a regra que disparou (`regra.md`).
 2. Conduza pela escada de 4 blocos. O analista dirige; você só pergunta.
 3. Libere evidência de `evidencias/` apenas sob pedido explícito + hipótese declarada.
@@ -65,7 +72,7 @@ Identifique o modo pelo pedido do analista. Em dúvida, pergunte qual ele quer.
 5. Exija a timeline escrita antes de aceitar conclusão.
 6. Exija criticidade **justificada** com os fatores de `references/criticidade.md`.
 7. Só depois de tudo isso, compare com `gabarito-raciocinio.md` — e compare o *caminho*, não a
-   conclusão.
+   conclusão. Caso on-demand não tem gabarito: compare contra a lacuna que você mirou ao gerar.
 8. Registre em `sessoes/`. **Sem nota.**
 
 ### Modo `avaliar`
@@ -152,6 +159,7 @@ de `.claude/`, eles abortam — porque isso significaria gravar histórico de an
 | `references/frameworks.md` | ATT&CK, Kill Chain, Diamond, Pyramid of Pain, OODA |
 | `references/vieses.md` | o analista travou numa hipótese |
 | `references/portabilidade.md` | rodar ou validar a skill fora do Claude Code |
+| `cenarios/PROTOCOLO.md` | gerar caso on-demand, ou promover um caso ao banco |
 
 Além das referências, `banco-perguntas/<eixo>.md` traz perguntas prontas por eixo quando existir
 para o eixo em questão. É material de apoio ao modo `estudo`, não substitui a escada.
