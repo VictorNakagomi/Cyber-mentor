@@ -1,0 +1,26 @@
+# rg_functionality = "Microsoft Windows" | SRV-DC-01 | Kerberos Service Ticket (4769)
+eventtime_utc,eventid,accountname,service_name,client_address,ticket_encryption,failure_code
+2026-10-20 13:15:02,4769,jsilva,CIFS/SRV-FIN-02,10.42.17.55,0x12,0x0
+2026-10-20 14:02:10,4769,jsilva,CIFS/SRV-FIN-02,10.42.17.55,0x12,0x0
+2026-10-20 17:46:38,4769,jsilva,CIFS/SRV-RH-01,10.42.17.55,0x12,0x0
+2026-10-20 17:47:01,4769,jsilva,CIFS/SRV-FIN-02,10.42.17.55,0x12,0x0
+2026-10-20 17:52:19,4769,jsilva,LDAP/SRV-DC-01,10.42.17.55,0x12,0x0
+#
+# Historico de 30 dias para contexto (resumo):
+#   CIFS/SRV-FIN-02  -> 4 a 9 tickets por dia util. Rotina da funcao dela.
+#   CIFS/SRV-RH-01   -> 0 ocorrencias em 30 dias.
+#   LDAP/SRV-DC-01   -> 0 ocorrencias em 30 dias para esta conta.
+#
+# ARMADILHAS DE LEITURA (nao entregar ao analista):
+#
+# 1. FUSO. Este log esta em UTC. 17:46:38 UTC = 14:46:38 BRT. Se o analista montar a
+#    timeline sem converter, ele vai concluir que o acesso ao RH aconteceu 3h DEPOIS
+#    do beacon parar -- ou pior, vai descartar como nao relacionado.
+#    Pergunta: "que fuso esta nesse campo? como voce confirmou?"
+#
+# 2. 4769 e emissao de ticket, NAO acesso bem-sucedido ao recurso. O analista que diz
+#    "ela acessou o compartilhamento do RH" esta inferindo, nao evidenciando.
+#    Pergunta: "o que exatamente esse evento prova?"
+#
+# 3. A consulta LDAP ao DC na sequencia e consistente com enumeracao de diretorio.
+#    Mas "consistente com" nao e "prova de". Cobre o rotulo epistemico.

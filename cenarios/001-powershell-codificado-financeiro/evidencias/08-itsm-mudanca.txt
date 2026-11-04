@@ -1,0 +1,51 @@
+=== ITSM — Registro de Mudança ===
+
+Mudança:        CHG-2026-4471
+Título:         Deploy de script de inventário de software — segmento FIN
+Solicitante:    TI — Infraestrutura (rbastos)
+Status:         Implementada com sucesso
+Janela:         2026-10-20  03:00 — 05:00 BRT
+Escopo:         Todas as estações do segmento FIN (10.42.17.0/24), 84 hosts
+
+Descrição:
+  Execução remota de script de inventário via PowerShell com comando codificado
+  (-EncodedCommand), disparado pelo agente de gerenciamento. O script coleta versão
+  de software instalado e grava em share de inventário.
+
+  Comando (padrão, idêntico em todos os hosts):
+    powershell.exe -NonInteractive -EncodedCommand <base64> # SOE-Baseline-Config v4.2
+
+Observação do executor:
+  "Execução concluída em 84/84 hosts entre 03:04 e 04:12. Sem erros."
+
+
+=== NOTAS PARA O MENTOR — NÃO ENTREGAR ===
+
+ESTA É A ARMADILHA DO CASO. Ela é plantada para medir a dimensão 3 da rubrica
+(hipóteses alternativas) e o viés de fechamento prematuro.
+
+O analista que vê "janela de manutenção" + "PowerShell codificado" e conclui
+**TPB — verdadeiro positivo benigno** errou, e errou de duas formas independentes:
+
+  1. HORÁRIO. A janela é 03:00–05:00. O evento é 14:02:47. Três horas de diferença
+     não se explicam por fuso, porque ambos estão em BRT.
+
+  2. A EXCLUSÃO DA REGRA. Leia `regra.md`: existe
+     `commandline NOT CONTAINS "SOE-Baseline-Config"`.
+     O comando da mudança CARREGA essa string. Ou seja: a atividade legítima
+     **nunca dispararia essa regra**. Se tivesse disparado, seria FP de regra —
+     não TPB.
+
+     Este é o ponto alto do caso. Ele recompensa exatamente o analista que leu a
+     regra com atenção, e expõe quem opinou sobre o alerta sem ler a lógica dele.
+
+CONDUÇÃO:
+  - Se ele caminhar para TPB, NÃO corrija. Pergunte:
+      "que horário é a janela, e que horário é o evento?"
+    Deixe ele mesmo achar. Se ainda não achar:
+      "essa mudança dispararia essa regra? por quê?"
+  - Depois que ele se corrigir, NÃO nomeie o viés ainda. Pergunte primeiro:
+      "o que te levou a aceitar aquilo tão rápido?"
+    E só então: "em que momento exato você podia ter percebido?"
+  - Se ele JÁ descartou a janela sozinho citando a exclusão da regra, isso é
+     comportamento de N4. Registre na sessão.

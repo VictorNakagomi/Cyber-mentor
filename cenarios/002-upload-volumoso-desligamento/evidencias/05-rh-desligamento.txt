@@ -1,0 +1,55 @@
+=== RH — Situação funcional ===
+
+Colaboradora:      Mariana Rocha (mrocha)
+Cargo:             Analista de Produto Sr.
+Admissão:          2023-04-17
+Mudança de função: 2026-09-01 (de Growth para Analytics de Produto)
+Licença:           2026-09-08 a 2026-10-05 (4 semanas)
+
+Pedido de demissão registrado:  2026-11-03  10:12 BRT
+Último dia previsto:            2026-11-14
+Aviso prévio:                   em cumprimento, trabalhando remoto
+
+Acessos ativos (em 2026-11-05):
+  - Bucket s3://corp-produto-analytics (leitura)  ........ ATIVO
+  - Confluence (espaço Produto)  ......................... ATIVO
+  - Jira  ................................................ ATIVO
+  - VPN corporativa  ..................................... ATIVO
+  - E-mail  .............................................. ATIVO
+
+Checklist de offboarding:  não iniciado
+Dispositivo:               notebook pessoal (BYOD aprovado, termo assinado)
+Termo de confidencialidade: assinado na admissão
+
+Nota do gestor (ticket de RH):
+  "Saída amigável, vai para outra empresa do setor. Pediu para manter acesso ao
+   Confluence até o último dia para documentar as entregas."
+
+
+=== NOTAS PARA O MENTOR — NÃO ENTREGAR ===
+
+1. FUSO. O pedido de demissão está em BRT. O CASB e o log de nuvem estão em UTC.
+   Converter é obrigatório, e a ordem importa para a leitura de motivação:
+     - pedido de demissão: 2026-11-03 10:12 BRT = 13:12 UTC
+     - primeira enumeração do bucket: 2026-11-03 13:40 UTC → 28 minutos DEPOIS
+     - primeiro upload não sancionado: 2026-11-05 11:48 UTC → 2 dias depois
+   A sequência é: pede demissão → enumera o bucket → sobe para nuvem pessoal.
+   Se o analista não converter, essa sequência se desfaz e ele perde o elo mais
+   forte do caso.
+
+2. "Saída amigável" e "termo assinado" são contexto, não absolvição. Cuidado com o
+   analista que usa isso para deflacionar: a intenção não é inferível do tom da
+   saída. Pergunte: "isso muda o que aconteceu, ou só o que você sente sobre o que
+   aconteceu?"
+
+3. Checklist de offboarding NÃO INICIADO com 9 dias de acesso restante é um achado
+   de processo, e vale para a próxima ação. Analista N4 cita isso. Analista N2 não.
+
+4. ARMADILHA SECUNDÁRIA: a mudança de função + 4 semanas de licença explicam por que
+   o baseline comportamental dela está contaminado (ver 01-securonix-violation.json).
+   O analista deve usar isso para questionar o DESVIO ESTATÍSTICO — e, ao mesmo tempo,
+   NÃO usar isso para descartar o caso. O desvio é questionável; o upload para
+   aplicação não sancionada é fato independente do baseline.
+   Quem descarta o caso inteiro por causa do baseline contaminado cometeu o erro
+   oposto do fechamento prematuro, e vale discutir: ele trocou uma conclusão
+   apressada por outra.

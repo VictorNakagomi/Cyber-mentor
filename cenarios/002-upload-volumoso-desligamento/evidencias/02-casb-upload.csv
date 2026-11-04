@@ -1,0 +1,33 @@
+# rg_functionality = "Cloud Access Security Broker" | usuario mrocha
+eventtime_utc,accountname,aplicacao,sancionada,destinationhostname,destinationaddress,bytes_out,arquivos,dispositivo
+2026-11-04 22:10:00,mrocha,CorpSync Backup,sim,sync.corpsync-cloud.com,192.0.2.44,2847238144,1842,notebook-pessoal
+2026-11-05 01:30:00,mrocha,CorpSync Backup,sim,sync.corpsync-cloud.com,192.0.2.44,3104382976,2016,notebook-pessoal
+2026-11-05 11:48:00,mrocha,SyncDrive Pro,NAO,api.sync-drive-pro.com,192.0.2.44,1216348160,214,notebook-pessoal
+2026-11-05 14:22:00,mrocha,SyncDrive Pro,NAO,api.sync-drive-pro.com,192.0.2.44,648912896,89,notebook-pessoal
+2026-11-05 18:55:00,mrocha,SyncDrive Pro,NAO,api.sync-drive-pro.com,192.0.2.44,201449145,31,notebook-pessoal
+2026-11-05 19:38:00,mrocha,CorpSync Backup,sim,sync.corpsync-cloud.com,192.0.2.44,1001100000,702,notebook-pessoal
+#
+# NOTAS PARA O MENTOR (nao entregar):
+#
+# 1. A ARMADILHA PRINCIPAL ESTA NA COLUNA destinationaddress.
+#    TODOS os destinos resolvem para 192.0.2.44 -- e um IP de CDN compartilhado.
+#    O analista que soma bytes_out por IP chega aos 8,4 GB da regra e conclui
+#    "8,4 GB vazaram". Errado: 6,95 GB sao do agente de backup CORPORATIVO e
+#    SANCIONADO. O volume realmente nao sancionado e 2,07 GB (as tres linhas
+#    SyncDrive Pro).
+#    O pivo correto aqui e `aplicacao` + `sancionada`, nao `destinationaddress`.
+#    -> isto e exatamente a tabela de confianca de pivos em correlacao-timeline.md:
+#       IP externo e pivo de confianca BAIXA porque CDN compartilha IP entre
+#       milhares de servicos legitimos.
+#
+# 2. SEGUNDA ARMADILHA: FUSO.
+#    A primeira linha de SyncDrive Pro e 2026-11-05 11:48 UTC = 08:48 BRT.
+#    O pedido de demissao (ver 05-rh-desligamento.txt) foi registrado
+#    2026-11-03 10:12 BRT. Entao o upload veio DEPOIS do pedido.
+#    Mas se o analista comparar 11:48 (lendo como BRT) com o registro do RH sem
+#    converter, a ordem relativa de OUTROS eventos do caso muda, e a leitura de
+#    motivacao fica frouxa. Cobre a conversao explicitamente.
+#
+# 3. O CASB ve APLICACAO, contagem de arquivos e volume. Ele NAO ve QUAIS arquivos,
+#    nem o conteudo. "214 arquivos" nao diz nada sobre o que eram.
+#    Pergunta: "que fonte diria QUAIS arquivos? ela existe aqui?"

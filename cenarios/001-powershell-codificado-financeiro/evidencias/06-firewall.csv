@@ -1,0 +1,32 @@
+# rg_functionality = "Next Generation Firewall" | sessoes de saida de 10.42.17.55 | fuso: BRT
+# Sessoes agregadas em janela de 5 minutos.
+eventtime,sourceaddress,destinationaddress,destinationport,protocol,transactionstring,bytes_sent,bytes_received,sessions,app_id
+2026-10-20 14:00:00,10.42.17.55,192.0.2.118,443,tcp,allow,2802,55524,2,ssl
+2026-10-20 14:00:00,10.42.17.55,10.10.5.21,445,tcp,deny,0,0,1,ms-ds-smb
+2026-10-20 14:02:50,10.42.17.55,192.0.2.17,443,tcp,allow,1848,285876,2,ssl
+2026-10-20 14:05:00,10.42.17.55,198.51.100.62,443,tcp,allow,6952,4106,5,ssl
+2026-10-20 14:10:00,10.42.17.55,198.51.100.62,443,tcp,allow,6888,4042,5,ssl
+2026-10-20 14:15:00,10.42.17.55,198.51.100.62,443,tcp,allow,7004,4118,5,ssl
+2026-10-20 14:35:00,10.42.17.55,198.51.100.62,443,tcp,allow,216742,7204,5,ssl
+2026-10-20 14:45:00,10.42.17.55,10.10.5.21,445,tcp,allow,8914,1264208,3,ms-ds-smb
+2026-10-20 14:45:00,10.42.17.55,10.10.2.15,445,tcp,allow,4120,88654,2,ms-ds-smb
+#
+# NOTAS PARA O MENTOR (nao entregar):
+#
+# 1. A linha de 14:00:00 para 10.10.5.21:445 esta em DENY -- uma tentativa de SMB ao RH
+#    2 minutos ANTES do PowerShell rodar. Pergunte ao analista o que isso faz com a
+#    hipotese "o phishing foi o acesso inicial". Pode ser ruido de descoberta de rede
+#    do Windows, pode ser atividade anterior. Nao resolva: force o rotulo epistemico.
+#
+# 2. 14:45:00 -> 1,26 MB RECEBIDOS de 10.10.5.21 (SRV-RH-01) via SMB, em ALLOW.
+#    Isto prova que houve transferencia. NAO prova o que foi transferido, nem que foi
+#    lido com sucesso pela aplicacao. E nao ha EDR nem DLP nesse servidor.
+#    Esta e a evidencia mais forte de impacto do caso -- e ainda assim e incompleta.
+#
+# 3. O padrao de 198.51.100.62 e regular: ~5 sessoes por janela de 5 min, bytes quase
+#    identicos. Isso e regua de maquina, nao comportamento humano -> beaconing.
+#    Pergunta: "o que te faz dizer que isso e programa e nao pessoa?"
+#
+# 4. O pico de bytes_sent as 14:35 (216 KB contra ~7 KB das outras janelas) casa com a
+#    linha do proxy as 14:38:55. Pergunte se sao o MESMO evento visto por dois olhos --
+#    e se dois olhos no mesmo link contam como duas testemunhas independentes.

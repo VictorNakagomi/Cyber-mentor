@@ -1,0 +1,26 @@
+# rg_functionality = "Email Gateway" | caixa de jsilva@corp.example | fuso: BRT
+eventtime,remetente,assunto,anexo,anexo_hash,veredito,acao,spf,dkim,dmarc,url_reescrita_clicada
+2026-10-20 13:54:12,financeiro@fornecedor-nfe.com,NF-e 884521 - Pendencia de pagamento,NFe_884521.html,sha256:3b9a7c4e81d02f6a5be13c97f084dd2165ea7b390c4d81f27ab6e059c3d1847f,clean,delivered,pass,fail,none,-
+2026-10-20 09:11:40,rh@corp.example,Comunicado interno - ferias coletivas,-,-,clean,delivered,pass,pass,pass,-
+2026-10-19 16:22:05,noreply@bancoexemplo.com.br,Extrato disponivel,-,-,clean,delivered,pass,pass,pass,nao
+#
+# NOTAS PARA O MENTOR (nao entregar):
+#
+# 1. O anexo foi escaneado e deu "clean". Pergunte: o que "clean" significa aqui?
+#    -> significa "nada conhecido casou". HTML smuggling nao casa com assinatura.
+#    O gateway funcionou exatamente como foi projetado, e ainda assim entregou.
+#
+# 2. DKIM fail e DMARC none, com SPF pass. Pergunte o que essa combinacao diz e o que
+#    ela NAO diz. Muitos dominios legitimos tem DMARC none.
+#
+# 3. url_reescrita_clicada = "-" para este e-mail: o gateway nao reescreveu URL do anexo
+#    HTML, porque a URL estava DENTRO do arquivo, nao no corpo. Entao NAO EXISTE no
+#    gateway nenhuma prova de clique.
+#    Entregue = recebido. Recebido nao e lido. Lido nao e clicado.
+#    A prova do clique so pode vir do proxy (13:59:47) -- e mesmo ali e inferencia por
+#    proximidade temporal, nao evidencia direta de que ELA clicou.
+#    Esta e a LACUNA central do caso. O analista deve nomea-la como linha da timeline.
+#
+# 4. Se ele quiser o conteudo do anexo para confirmar o smuggling, pergunte de onde
+#    tiraria isso -- e se o gateway retem anexo neste ambiente. (Nao retem: ver
+#    _indisponivel.md.)

@@ -1,0 +1,21 @@
+# rg_functionality = "DNS" | servidor interno SRV-DNS-01 | fuso: BRT
+# eventtime | cliente | query | tipo | resposta
+2026-10-20 13:58:30 | 10.42.17.55 | mail.corp.example      | A | 10.10.2.40
+2026-10-20 13:59:46 | 10.42.17.55 | nfe-portal-seguro.com  | A | 192.0.2.118
+2026-10-20 14:02:50 | 10.42.17.55 | cdn-nfe-assets.com     | A | 192.0.2.17
+2026-10-20 14:03:08 | 10.42.17.55 | api-telemetry-sync.com | A | 198.51.100.62
+2026-10-20 14:12:02 | 10.42.17.55 | portal.bancoexemplo.com.br | A | 203.0.113.9
+2026-10-20 14:38:54 | 10.42.17.55 | api-telemetry-sync.com | A | 198.51.100.62
+2026-10-20 14:46:30 | 10.42.17.55 | srv-rh-01.corp.example | A | 10.10.5.21
+#
+# Observacoes para o mentor (nao entregar):
+#
+# 1. Ha apenas 3 queries para api-telemetry-sync.com, mas o proxy e o EDR mostram
+#    dezenas de conexoes. Por que? -> cache de resolucao no host. Ausencia de query
+#    NAO prova ausencia de conexao. Pergunta: "por que o DNS tem 3 e o proxy tem 40?"
+#
+# 2. A query de 14:46:30 para srv-rh-01 e o unico sinal de interesse no servidor de RH
+#    neste log. Resolucao NAO e conexao -- e muito menos acesso.
+#
+# 3. Nenhuma query aparece para o dominio do anexo antes de 13:59:46. Se o analista
+#    concluir que o e-mail foi o vetor, pergunte como ele prova o clique: este log nao prova.

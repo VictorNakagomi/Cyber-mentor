@@ -1,0 +1,22 @@
+# rg_functionality = "Web Proxy" | SEM inspecao TLS | fuso: BRT
+# Campos: eventtime,accountname,sourceaddress,destinationhostname,transactionstring,url_path,categoryobject,bytes_in,bytes_out,useragent
+eventtime,accountname,sourceaddress,destinationhostname,transactionstring,url_path,categoryobject,bytes_in,bytes_out,useragent
+2026-10-20 13:58:31,jsilva,10.42.17.55,mail.corp.example,GET,/owa/,Webmail,18422,2104,Mozilla/5.0 Chrome/129
+2026-10-20 13:59:47,jsilva,10.42.17.55,nfe-portal-seguro.com,CONNECT,-,Uncategorized,14308,1822,Mozilla/5.0 Chrome/129
+2026-10-20 14:00:02,jsilva,10.42.17.55,nfe-portal-seguro.com,CONNECT,-,Uncategorized,41216,980,Mozilla/5.0 Chrome/129
+2026-10-20 14:02:51,jsilva,10.42.17.55,cdn-nfe-assets.com,CONNECT,-,Uncategorized,1204,742,-
+2026-10-20 14:02:57,jsilva,10.42.17.55,cdn-nfe-assets.com,CONNECT,-,Uncategorized,284672,1106,-
+2026-10-20 14:03:09,jsilva,10.42.17.55,api-telemetry-sync.com,CONNECT,-,Uncategorized,842,1388,-
+2026-10-20 14:04:11,jsilva,10.42.17.55,api-telemetry-sync.com,CONNECT,-,Uncategorized,796,1402,-
+2026-10-20 14:05:14,jsilva,10.42.17.55,api-telemetry-sync.com,CONNECT,-,Uncategorized,818,1376,-
+2026-10-20 14:06:16,jsilva,10.42.17.55,api-telemetry-sync.com,CONNECT,-,Uncategorized,804,1391,-
+2026-10-20 14:12:03,jsilva,10.42.17.55,portal.bancoexemplo.com.br,CONNECT,-,Finance,92144,38210,Mozilla/5.0 Chrome/129
+2026-10-20 14:38:55,jsilva,10.42.17.55,api-telemetry-sync.com,CONNECT,-,Uncategorized,2918,214806,-
+2026-10-20 14:41:02,jsilva,10.42.17.55,api-telemetry-sync.com,CONNECT,-,Uncategorized,788,1384,-
+#
+# NOTA DE TELEMETRIA (nao mostrar junto; e a pergunta, nao a resposta):
+# Este proxy nao faz inspecao TLS. Para destinos HTTPS ele registra o host do CONNECT,
+# o volume e a duracao -- NAO registra URL completa, metodo real nem payload.
+# A linha de 14:38:55 tem bytes_out de 214 KB, muito acima das outras.
+# Pergunte: isso prova exfiltracao? Prova exfiltracao DE QUE? Que fonte diria o conteudo?
+# O user-agent vazio ("-") nas conexoes de 14:02 em diante tambem e um dado. Pergunte o que significa.

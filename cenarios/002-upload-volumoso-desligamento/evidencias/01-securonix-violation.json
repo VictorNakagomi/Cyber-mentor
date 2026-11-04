@@ -1,0 +1,43 @@
+{
+  "policyname": "Abnormal Data Egress Volume - Peer Group Deviation",
+  "policytype": "Behavior-based",
+  "violator": "Users",
+  "entityname": "mrocha",
+  "accountname": "mrocha",
+  "email": "mrocha@corp.example",
+  "riskscore": 88,
+  "riskscore_7d_atras": 15,
+  "categoryseverity": "High",
+  "eventtime": "2026-11-05 19:40 UTC",
+  "collectiontimestamp": "2026-11-05 19:58 UTC",
+  "rg_functionality": ["Web Proxy", "Cloud Access Security Broker"],
+  "tenantname": "corp",
+
+  "metrica": {
+    "bytes_out_24h": 9019431321,
+    "bytes_out_24h_legivel": "8.4 GB",
+    "mediana_peer_group_30d": 805306368,
+    "mediana_legivel": "0.75 GB",
+    "desvio": "11.2x",
+    "peer_group": "Produto - Analistas",
+    "peer_group_membros": 14
+  },
+
+  "baseline_da_entidade": {
+    "dias_de_historico_na_funcao_atual": 65,
+    "funcao_anterior": "Analista de Produto Pleno - time Growth",
+    "mudanca_de_funcao": "2026-09-01",
+    "ausencia_registrada": "2026-09-08 a 2026-10-05 (licenca de 4 semanas)",
+    "bytes_out_mediana_propria_30d": 412316860,
+    "bytes_out_mediana_propria_30d_legivel": "0.38 GB",
+    "observacao_do_motor": "Entidade com menos de 90 dias de atividade continua na funcao atual."
+  },
+
+  "composicao_do_score": [
+    {"data": "2026-10-30", "policy": "First time access to new cloud storage app", "pontos": 10},
+    {"data": "2026-11-02", "policy": "Access outside business hours", "pontos": 8},
+    {"data": "2026-11-05", "policy": "Abnormal Data Egress Volume", "pontos": 70}
+  ],
+
+  "_nota_mentor": "Tres coisas para o analista achar SOZINHO: (1) o bloco baseline_da_entidade diz que ela trocou de funcao ha 65 dias e ficou 4 semanas fora -- o baseline comportamental dela esta contaminado; (2) a mediana PROPRIA dela (0.38 GB) e metade da do grupo (0.75 GB), o que muda a leitura do desvio; (3) o score de 88 nao veio de tres eventos graves: 70 dos 88 vieram de uma unica policy. Nao entregue nada disso."
+}

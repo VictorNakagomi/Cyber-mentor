@@ -1,0 +1,22 @@
+# Dados de analista nunca entram no núcleo.
+# O empacotador aborta se encontrar qualquer um destes aqui dentro --
+# isto é a segunda linha de defesa, não a primeira.
+dados-analistas/
+baseline.json
+baseline.md
+sessoes/
+avaliacoes/
+conformidade/
+
+# Saída do empacotador
+cyber-mentor-*.zip
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
